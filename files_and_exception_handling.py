@@ -23,10 +23,20 @@
 # Let's apply DRY - OOP - Python Packaging
 #              1     2           3
 
-from file_handling import FileHandling
+# from file_handling import FileHandling
+#
+# class file_and_exception_handling(FileHandling):
+#     pass
+# open_file = file_and_exception_handling()
+# print(open_file.exception_handling())
 
-class file_and_exception_handling(FileHandling):
-    pass
-open_file = file_and_exception_handling()
-print(open_file.exception_handling())
+def open_read_file(file):
+    try:
+        with open(file, "r") as file:
+            for line in file.readlines():
+                print(line.rstrip('\n'))
 
+    except FileNotFoundError:
+        print("file or directory can not be found please check details are correct")
+        raise
+open_read_file("order.txt")
